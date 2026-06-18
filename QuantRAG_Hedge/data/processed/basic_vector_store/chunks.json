@@ -1,0 +1,380 @@
+[
+  {
+    "chunk_id": "01_options_basics_chunk_0",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "# 01 Options Basics\n\n## 1. What is an option?\n\nAn **option** is a financial derivative that gives its holder the right, but not the obligation, to buy or sell an underlying asset at a fixed price before or at a specific future date.\n\nThe underlying asset can be a stock, index, ETF, currency, commodity, or another tradable instrument.\n\nThere are two basic types of options:\n\n- **Call option**: gives the holder the right to buy the underlying asset.\n- **Put option**: gives the holder the right to sell the underlying asset.\n\nThe fixed price is called the **strike price**, usually denoted by \\(K\\). The final date is called the **maturity** or **expiration date**, denoted by \\(T\\). The underlying"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_1",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "ly denoted by \\(K\\). The final date is called the **maturity** or **expiration date**, denoted by \\(T\\). The underlying asset price at time \\(t\\) is denoted by \\(S_t\\).\n\n## 2. Basic notation\n\n| Symbol | Meaning |\n|---|---|\n| \\(S_t\\) | Underlying asset price at time \\(t\\) |\n| \\(K\\) | Strike price |\n| \\(T\\) | Maturity time |\n| \\(r\\) | Risk-free interest rate |\n| \\(\\sigma\\) | Volatility of the underlying asset |\n| \\(C\\) | Call option price |\n| \\(P\\) | Put option price |\n\n## 3. Payoff of a European call option\n\nA European call option can only be exercised at maturity. Its payoff is:\n\n\\[\n\\text{Call payoff} = \\max(S_T - K, 0)\n\\]\n\nIntuition:\n\n- If \\(S_T > K\\), the holder can buy the asset at \\(K\\)"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_2",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "f is:\n\n\\[\n\\text{Call payoff} = \\max(S_T - K, 0)\n\\]\n\nIntuition:\n\n- If \\(S_T > K\\), the holder can buy the asset at \\(K\\) and immediately own something worth \\(S_T\\). The payoff is \\(S_T - K\\).\n- If \\(S_T \\le K\\), exercising the option is not useful. The payoff is 0.\n\nExample:\n\nSuppose \\(K = 100\\).\n\n| Final stock price \\(S_T\\) | Call payoff \\(\\max(S_T-K,0)\\) |\n|---:|---:|\n| 80 | 0 |\n| 100 | 0 |\n| 120 | 20 |\n| 150 | 50 |\n\n## 4. Payoff of a European put option\n\nA European put option can only be exercised at maturity. Its payoff is:\n\n\\[\n\\text{Put payoff} = \\max(K - S_T, 0)\n\\]\n\nIntuition:\n\n- If \\(S_T < K\\), the holder can sell the asset for \\(K\\), even though the market price is only \\(S_T\\). The"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_3",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "ntuition:\n\n- If \\(S_T < K\\), the holder can sell the asset for \\(K\\), even though the market price is only \\(S_T\\). The payoff is \\(K - S_T\\).\n- If \\(S_T \\ge K\\), exercising the put is not useful. The payoff is 0.\n\nExample:\n\nSuppose \\(K = 100\\).\n\n| Final stock price \\(S_T\\) | Put payoff \\(\\max(K-S_T,0)\\) |\n|---:|---:|\n| 80 | 20 |\n| 100 | 0 |\n| 120 | 0 |\n| 150 | 0 |\n\n## 5. Moneyness\n\n**Moneyness** describes the relationship between the current asset price \\(S_t\\) and the strike price \\(K\\).\n\nFor a call option:\n\n- **In the money (ITM)**: \\(S_t > K\\)\n- **At the money (ATM)**: \\(S_t \\approx K\\)\n- **Out of the money (OTM)**: \\(S_t < K\\)\n\nFor a put option:\n\n- **In the money (ITM)**: \\(S_t < K\\)\n-"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_4",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "\\(S_t \\approx K\\)\n- **Out of the money (OTM)**: \\(S_t < K\\)\n\nFor a put option:\n\n- **In the money (ITM)**: \\(S_t < K\\)\n- **At the money (ATM)**: \\(S_t \\approx K\\)\n- **Out of the money (OTM)**: \\(S_t > K\\)\n\nIntuition:\n\nMoneyness tells us whether the option would have positive exercise value if it were exercised immediately. However, option price is not only payoff. Before maturity, an option also has **time value**, because the underlying price may move favorably in the future.\n\n## 6. Intrinsic value and time value\n\nThe price of an option can be decomposed conceptually into:\n\n\\[\n\\text{Option price} = \\text{Intrinsic value} + \\text{Time value}\n\\]\n\nFor a call:\n\n\\[\n\\text{Intrinsic value} = \\max(S"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_5",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "\\[\n\\text{Option price} = \\text{Intrinsic value} + \\text{Time value}\n\\]\n\nFor a call:\n\n\\[\n\\text{Intrinsic value} = \\max(S_t - K, 0)\n\\]\n\nFor a put:\n\n\\[\n\\text{Intrinsic value} = \\max(K - S_t, 0)\n\\]\n\nTime value reflects the possibility that the option becomes more valuable before expiration.\n\nExample:\n\nSuppose a call option has \\(S_t = 105\\), \\(K = 100\\), and market price \\(C = 8\\).\n\nThe intrinsic value is:\n\n\\[\n\\max(105 - 100, 0) = 5\n\\]\n\nThe time value is:\n\n\\[\n8 - 5 = 3\n\\]\n\n## 7. European vs American options\n\nA **European option** can only be exercised at maturity.\n\nAn **American option** can be exercised at any time before or at maturity.\n\nBlack-Scholes pricing in its basic form is designed for"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_6",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "an option** can be exercised at any time before or at maturity.\n\nBlack-Scholes pricing in its basic form is designed for European options. American options are harder to price because early exercise may be optimal, especially for dividend-paying stocks or deep in-the-money puts.\n\n## 8. Long and short positions\n\nBuying an option creates a **long option** position. Selling or writing an option creates a **short option** position.\n\nFor a long call:\n\n\\[\n\\text{Profit} = \\max(S_T-K,0) - C_0\n\\]\n\nFor a short call:\n\n\\[\n\\text{Profit} = C_0 - \\max(S_T-K,0)\n\\]\n\nwhere \\(C_0\\) is the premium paid at the start.\n\nIntuition:\n\n- The option buyer pays premium upfront and receives nonlinear upside.\n- The option"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_7",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "mium paid at the start.\n\nIntuition:\n\n- The option buyer pays premium upfront and receives nonlinear upside.\n- The option seller receives premium upfront but takes on the obligation to pay the option payoff.\n\n## 9. Put-call parity\n\nFor European options on a non-dividend-paying stock, put-call parity is:\n\n\\[\nC - P = S_0 - K e^{-rT}\n\\]\n\nEquivalently:\n\n\\[\nC + K e^{-rT} = P + S_0\n\\]\n\nIntuition:\n\nA portfolio of one call plus cash equal to the present value of the strike has the same final payoff as a portfolio of one put plus one share of stock.\n\nAt maturity:\n\n\\[\n\\max(S_T-K,0)+K = \\max(K-S_T,0)+S_T\n\\]\n\nBoth sides are equal to \\(\\max(S_T,K)\\).\n\n## 10. Main assumptions in basic option theory\n\nBasic"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_8",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "= \\max(K-S_T,0)+S_T\n\\]\n\nBoth sides are equal to \\(\\max(S_T,K)\\).\n\n## 10. Main assumptions in basic option theory\n\nBasic option pricing usually assumes:\n\n1. The underlying asset can be traded continuously.\n2. There are no transaction costs.\n3. There are no taxes or liquidity constraints.\n4. Investors can borrow and lend at the risk-free rate.\n5. There is no arbitrage.\n6. The option contract terms are fixed and known.\n\nThese assumptions are idealized. Real markets have transaction costs, bid-ask spreads, discrete trading, market impact, and liquidity constraints. This is one reason why hedging in practice can differ from textbook formulas.\n\n## 11. Why options matter for hedging\n\nOptions are us"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_9",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "reason why hedging in practice can differ from textbook formulas.\n\n## 11. Why options matter for hedging\n\nOptions are useful because they create nonlinear exposure. The payoff is not a straight line like holding a stock. This makes them powerful for risk management but also difficult to hedge.\n\nFor example, a call option becomes more sensitive to the stock price as the stock price increases. A put option becomes more sensitive as the stock price falls. This changing sensitivity motivates the study of **Greeks**, especially **Delta**, and the design of hedging strategies such as **delta hedging**.\n\n## 12. Mini example: option payoff and profit\n\nSuppose an investor buys a European call with:"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_10",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "h as **delta hedging**.\n\n## 12. Mini example: option payoff and profit\n\nSuppose an investor buys a European call with:\n\n- \\(S_0 = 100\\)\n- \\(K = 100\\)\n- Premium \\(C_0 = 6\\)\n\nAt maturity, if \\(S_T = 115\\):\n\n\\[\n\\text{Payoff} = \\max(115-100,0)=15\n\\]\n\n\\[\n\\text{Profit} = 15 - 6 = 9\n\\]\n\nIf \\(S_T = 95\\):\n\n\\[\n\\text{Payoff} = \\max(95-100,0)=0\n\\]\n\n\\[\n\\text{Profit} = 0 - 6 = -6\n\\]\n\nThe maximum loss for the long call buyer is the premium paid, but the upside can be large if the stock price rises significantly.\n\n## 13. Retrieval questions for RAG testing\n\n1. What is the payoff of a European call option?\n2. What is the payoff of a European put option?\n3. What is the difference between intrinsic value and t"
+  },
+  {
+    "chunk_id": "01_options_basics_chunk_11",
+    "doc_id": "01_options_basics",
+    "source": "01_options_basics.md",
+    "text": "ean call option?\n2. What is the payoff of a European put option?\n3. What is the difference between intrinsic value and time value?\n4. What does it mean for a call option to be in the money?\n5. What is put-call parity?\n6. Why are options harder to hedge than stocks?"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_0",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "# 02 Black-Scholes Model\n\n## 1. Purpose of the Black-Scholes model\n\nThe **Black-Scholes model** is a classical mathematical model for pricing European call and put options. It gives a closed-form formula for the fair price of an option under idealized market assumptions.\n\nThe model is important because it connects option prices to:\n\n- current stock price,\n- strike price,\n- time to maturity,\n- risk-free interest rate,\n- volatility.\n\nIt also provides the foundation for Greeks and delta hedging.\n\n## 2. Core modeling assumption\n\nThe Black-Scholes model assumes that the stock price follows a **geometric Brownian motion**:\n\n\\[\ndS_t = \\mu S_t dt + \\sigma S_t dW_t\n\\]\n\nwhere:\n\n| Symbol | Meaning |\n|-"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_1",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "ice follows a **geometric Brownian motion**:\n\n\\[\ndS_t = \\mu S_t dt + \\sigma S_t dW_t\n\\]\n\nwhere:\n\n| Symbol | Meaning |\n|---|---|\n| \\(S_t\\) | Stock price at time \\(t\\) |\n| \\(\\mu\\) | Expected return or drift |\n| \\(\\sigma\\) | Volatility |\n| \\(W_t\\) | Brownian motion |\n| \\(dt\\) | Small time interval |\n\nIntuition:\n\nThe term \\(\\mu S_t dt\\) represents the expected direction of movement. The term \\(\\sigma S_t dW_t\\) represents random market shocks. Because the randomness is proportional to \\(S_t\\), the model keeps stock prices positive.\n\n## 3. Risk-neutral idea\n\nOne surprising result in Black-Scholes pricing is that the expected return \\(\\mu\\) of the stock does not appear in the final option pricing"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_2",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "t in Black-Scholes pricing is that the expected return \\(\\mu\\) of the stock does not appear in the final option pricing formula.\n\nUnder the **risk-neutral measure**, the stock price evolves as:\n\n\\[\ndS_t = r S_t dt + \\sigma S_t dW_t^{\\mathbb{Q}}\n\\]\n\nwhere \\(r\\) is the risk-free rate.\n\nIntuition:\n\nIn a no-arbitrage market, we can price derivatives by discounting their expected payoff under a risk-neutral probability measure. This does not mean investors are actually risk-neutral. It is a mathematical pricing tool.\n\n## 4. Black-Scholes formula for a European call\n\nFor a non-dividend-paying stock, the Black-Scholes price of a European call option is:\n\n\\[\nC = S_0 N(d_1) - K e^{-rT} N(d_2)\n\\]\n\nwhe"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_3",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "vidend-paying stock, the Black-Scholes price of a European call option is:\n\n\\[\nC = S_0 N(d_1) - K e^{-rT} N(d_2)\n\\]\n\nwhere:\n\n\\[\nd_1 = \\frac{\\ln(S_0/K) + \\left(r + \\frac{1}{2}\\sigma^2\\right)T}{\\sigma\\sqrt{T}}\n\\]\n\n\\[\nd_2 = d_1 - \\sigma\\sqrt{T}\n\\]\n\nand \\(N(x)\\) is the cumulative distribution function of the standard normal distribution.\n\n## 5. Black-Scholes formula for a European put\n\nThe Black-Scholes price of a European put option is:\n\n\\[\nP = K e^{-rT} N(-d_2) - S_0 N(-d_1)\n\\]\n\nThis is consistent with put-call parity:\n\n\\[\nC - P = S_0 - K e^{-rT}\n\\]\n\n## 6. Interpretation of \\(d_1\\) and \\(d_2\\)\n\nThe quantities \\(d_1\\) and \\(d_2\\) are standardized terms that combine moneyness, interest rate, vol"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_4",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "(d_1\\) and \\(d_2\\)\n\nThe quantities \\(d_1\\) and \\(d_2\\) are standardized terms that combine moneyness, interest rate, volatility, and time.\n\nA useful intuition:\n\n- \\(N(d_2)\\) is related to the risk-neutral probability that the call option finishes in the money.\n- \\(N(d_1)\\) is the call option's Delta in the non-dividend-paying Black-Scholes model.\n\nThey are not just arbitrary symbols. They summarize the option's position relative to the strike after adjusting for uncertainty and time.\n\n## 7. Assumptions of the Black-Scholes model\n\nThe standard Black-Scholes model assumes:\n\n1. The option is European.\n2. The underlying stock pays no dividends.\n3. The stock price follows geometric Brownian motio"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_5",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": ". The option is European.\n2. The underlying stock pays no dividends.\n3. The stock price follows geometric Brownian motion.\n4. Volatility \\(\\sigma\\) is constant.\n5. The risk-free rate \\(r\\) is constant.\n6. Trading is continuous.\n7. There are no transaction costs or taxes.\n8. The market is frictionless and liquid.\n9. Investors can borrow and lend at the risk-free rate.\n10. There are no arbitrage opportunities.\n\nThese assumptions simplify the market. In real trading, volatility changes over time, trading is discrete, liquidity is limited, and transaction costs matter.\n\n## 8. Why volatility matters\n\nVolatility measures uncertainty in the future stock price. Higher volatility usually increases bo"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_6",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "hy volatility matters\n\nVolatility measures uncertainty in the future stock price. Higher volatility usually increases both call and put option prices.\n\nIntuition:\n\n- A call option benefits from large upward movements but has limited downside because payoff cannot go below zero.\n- A put option benefits from large downward movements but also has limited downside for the buyer.\n- Therefore, more uncertainty increases the value of optionality.\n\n## 9. Example: calculating a European call price\n\nSuppose:\n\n- \\(S_0 = 100\\)\n- \\(K = 100\\)\n- \\(r = 0.05\\)\n- \\(\\sigma = 0.20\\)\n- \\(T = 1\\) year\n\nFirst compute:\n\n\\[\nd_1 = \\frac{\\ln(100/100) + (0.05 + 0.5 \\times 0.20^2) \\times 1}{0.20\\sqrt{1}}\n\\]\n\n\\[\nd_1 = \\f"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_7",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": ") year\n\nFirst compute:\n\n\\[\nd_1 = \\frac{\\ln(100/100) + (0.05 + 0.5 \\times 0.20^2) \\times 1}{0.20\\sqrt{1}}\n\\]\n\n\\[\nd_1 = \\frac{0 + (0.05 + 0.02)}{0.20} = 0.35\n\\]\n\n\\[\nd_2 = 0.35 - 0.20 = 0.15\n\\]\n\nUsing standard normal values:\n\n\\[\nN(d_1) \\approx N(0.35) \\approx 0.6368\n\\]\n\n\\[\nN(d_2) \\approx N(0.15) \\approx 0.5596\n\\]\n\nThe call price is:\n\n\\[\nC = 100(0.6368) - 100e^{-0.05}(0.5596)\n\\]\n\nSince \\(e^{-0.05} \\approx 0.9512\\):\n\n\\[\nC \\approx 63.68 - 53.23 = 10.45\n\\]\n\nSo the Black-Scholes call price is approximately:\n\n\\[\nC \\approx 10.45\n\\]\n\n## 10. Example: calculating a European put price\n\nUsing the same inputs, the put price is:\n\n\\[\nP = 100e^{-0.05}N(-0.15) - 100N(-0.35)\n\\]\n\nUsing:\n\n\\[\nN(-0.15) \\approx 0.440"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_8",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "sing the same inputs, the put price is:\n\n\\[\nP = 100e^{-0.05}N(-0.15) - 100N(-0.35)\n\\]\n\nUsing:\n\n\\[\nN(-0.15) \\approx 0.4404\n\\]\n\n\\[\nN(-0.35) \\approx 0.3632\n\\]\n\nThen:\n\n\\[\nP \\approx 100(0.9512)(0.4404) - 100(0.3632)\n\\]\n\n\\[\nP \\approx 41.89 - 36.32 = 5.57\n\\]\n\nSo the Black-Scholes put price is approximately:\n\n\\[\nP \\approx 5.57\n\\]\n\nWe can check put-call parity:\n\n\\[\nC - P \\approx 10.45 - 5.57 = 4.88\n\\]\n\n\\[\nS_0 - Ke^{-rT} = 100 - 100e^{-0.05} \\approx 100 - 95.12 = 4.88\n\\]\n\nThe values are consistent.\n\n## 11. The Black-Scholes PDE\n\nThe Black-Scholes option price \\(V(S,t)\\) satisfies the partial differential equation:\n\n\\[\n\\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_9",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "partial differential equation:\n\n\\[\n\\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + rS\\frac{\\partial V}{\\partial S} - rV = 0\n\\]\n\nwith terminal condition:\n\nFor a call:\n\n\\[\nV(S,T) = \\max(S-K,0)\n\\]\n\nFor a put:\n\n\\[\nV(S,T) = \\max(K-S,0)\n\\]\n\nIntuition:\n\nThe PDE comes from constructing a continuously rebalanced portfolio of the option and the stock so that the random component cancels out. The resulting riskless portfolio must earn the risk-free rate.\n\n## 12. Limitations of Black-Scholes\n\nBlack-Scholes is elegant but not fully realistic. Important limitations include:\n\n1. Volatility is not constant in real markets.\n2. Asset returns often have fat tails.\n3"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_10",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "Important limitations include:\n\n1. Volatility is not constant in real markets.\n2. Asset returns often have fat tails.\n3. Trading is discrete, not continuous.\n4. Transaction costs and bid-ask spreads exist.\n5. Market liquidity is not infinite.\n6. Large trades can move prices.\n7. Jumps and crashes are not captured by simple geometric Brownian motion.\n\nThese limitations motivate more practical hedging methods, including transaction-cost-aware hedging and reinforcement learning hedging.\n\n## 13. Retrieval questions for RAG testing\n\n1. What is the Black-Scholes formula for a European call option?\n2. What is the Black-Scholes formula for a European put option?\n3. What assumptions does the Black-Sc"
+  },
+  {
+    "chunk_id": "02_black_scholes_chunk_11",
+    "doc_id": "02_black_scholes",
+    "source": "02_black_scholes.md",
+    "text": "opean call option?\n2. What is the Black-Scholes formula for a European put option?\n3. What assumptions does the Black-Scholes model make?\n4. Why does volatility increase option value?\n5. What is the Black-Scholes PDE?\n6. Why does the drift \\(\\mu\\) not appear in the final Black-Scholes option price?"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_0",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "# 03 Greeks\n\n## 1. What are Greeks?\n\n**Greeks** measure how sensitive an option price is to changes in different input variables.\n\nIf the option price is written as:\n\n\\[\nV = V(S, t, \\sigma, r)\n\\]\n\nthen Greeks are partial derivatives of \\(V\\) with respect to these variables.\n\nThey are called Greeks because many of them are denoted by Greek letters, such as Delta \\(\\Delta\\), Gamma \\(\\Gamma\\), Theta \\(\\Theta\\), Vega, and Rho \\(\\rho\\).\n\nGreeks are essential for risk management because they tell traders how an option portfolio reacts to market changes.\n\n## 2. Delta\n\nDelta measures the sensitivity of an option price to the underlying asset price:\n\n\\[\n\\Delta = \\frac{\\partial V}{\\partial S}\n\\]\n\nIntu"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_1",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "es the sensitivity of an option price to the underlying asset price:\n\n\\[\n\\Delta = \\frac{\\partial V}{\\partial S}\n\\]\n\nIntuition:\n\nDelta tells us approximately how much the option price changes when the stock price increases by 1 unit.\n\nApproximation:\n\n\\[\n\\Delta V \\approx \\Delta \\cdot \\Delta S\n\\]\n\nFor a European call option under Black-Scholes with no dividends:\n\n\\[\n\\Delta_{call} = N(d_1)\n\\]\n\nFor a European put option:\n\n\\[\n\\Delta_{put} = N(d_1) - 1\n\\]\n\nTypical ranges:\n\n| Option type | Delta range |\n|---|---:|\n| Call | 0 to 1 |\n| Put | -1 to 0 |\n\nExample:\n\nIf a call option has \\(\\Delta = 0.60\\), then a 1 dollar increase in the stock price approximately increases the call price by 0.60 dollars."
+  },
+  {
+    "chunk_id": "03_greeks_chunk_2",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "\\(\\Delta = 0.60\\), then a 1 dollar increase in the stock price approximately increases the call price by 0.60 dollars.\n\n## 3. Gamma\n\nGamma measures how Delta changes when the underlying asset price changes:\n\n\\[\n\\Gamma = \\frac{\\partial^2 V}{\\partial S^2}\n\\]\n\nEquivalently:\n\n\\[\n\\Gamma = \\frac{\\partial \\Delta}{\\partial S}\n\\]\n\nUnder Black-Scholes, call and put options have the same Gamma:\n\n\\[\n\\Gamma = \\frac{N'(d_1)}{S\\sigma\\sqrt{T}}\n\\]\n\nwhere \\(N'(d_1)\\) is the standard normal probability density function.\n\nIntuition:\n\nGamma tells us how unstable the Delta is. If Gamma is high, the hedge ratio changes quickly as the stock price moves.\n\nThis matters because delta hedging assumes that we can rebala"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_3",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "the hedge ratio changes quickly as the stock price moves.\n\nThis matters because delta hedging assumes that we can rebalance the hedge. High Gamma means we may need to rebalance more often.\n\n## 4. Theta\n\nTheta measures the sensitivity of an option price to the passage of time:\n\n\\[\n\\Theta = \\frac{\\partial V}{\\partial t}\n\\]\n\nIn many trading contexts, Theta is interpreted as the option's time decay.\n\nIntuition:\n\nOptions usually lose time value as maturity approaches. All else equal, a shorter time to maturity gives the option less opportunity to move into the money.\n\nFor a non-dividend-paying European call under Black-Scholes:\n\n\\[\n\\Theta_{call} = -\\frac{S N'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_4",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "dividend-paying European call under Black-Scholes:\n\n\\[\n\\Theta_{call} = -\\frac{S N'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)\n\\]\n\nFor a European put:\n\n\\[\n\\Theta_{put} = -\\frac{S N'(d_1)\\sigma}{2\\sqrt{T}} + rKe^{-rT}N(-d_2)\n\\]\n\nNote:\n\nDifferent sources may define Theta with respect to calendar time \\(t\\) or time to maturity \\(T\\). The sign convention should always be checked.\n\n## 5. Vega\n\nVega measures the sensitivity of an option price to volatility:\n\n\\[\n\\text{Vega} = \\frac{\\partial V}{\\partial \\sigma}\n\\]\n\nUnder Black-Scholes, call and put options have the same Vega:\n\n\\[\n\\text{Vega} = S N'(d_1)\\sqrt{T}\n\\]\n\nIntuition:\n\nHigher volatility increases the probability of large favorable movements. Si"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_5",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "t{Vega} = S N'(d_1)\\sqrt{T}\n\\]\n\nIntuition:\n\nHigher volatility increases the probability of large favorable movements. Since option buyers have limited downside but benefit from favorable extremes, higher volatility generally increases option value.\n\nExample:\n\nIf an option has Vega \\(= 25\\), then a 0.01 increase in volatility approximately increases the option price by:\n\n\\[\n25 \\times 0.01 = 0.25\n\\]\n\n## 6. Rho\n\nRho measures the sensitivity of an option price to the risk-free interest rate:\n\n\\[\n\\rho = \\frac{\\partial V}{\\partial r}\n\\]\n\nFor a European call:\n\n\\[\n\\rho_{call} = KT e^{-rT}N(d_2)\n\\]\n\nFor a European put:\n\n\\[\n\\rho_{put} = -KT e^{-rT}N(-d_2)\n\\]\n\nIntuition:\n\nA higher interest rate reduces"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_6",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "e^{-rT}N(d_2)\n\\]\n\nFor a European put:\n\n\\[\n\\rho_{put} = -KT e^{-rT}N(-d_2)\n\\]\n\nIntuition:\n\nA higher interest rate reduces the present value of the strike price. This tends to increase call prices and decrease put prices.\n\n## 7. Greek summary table\n\n| Greek | Formula idea | Measures sensitivity to | Main risk meaning |\n|---|---|---|---|\n| Delta | \\(\\partial V/\\partial S\\) | Stock price | Directional exposure |\n| Gamma | \\(\\partial^2 V/\\partial S^2\\) | Stock price curvature | Delta instability |\n| Theta | \\(\\partial V/\\partial t\\) | Time | Time decay |\n| Vega | \\(\\partial V/\\partial \\sigma\\) | Volatility | Volatility exposure |\n| Rho | \\(\\partial V/\\partial r\\) | Interest rate | Rate exposure |"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_7",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "artial \\sigma\\) | Volatility | Volatility exposure |\n| Rho | \\(\\partial V/\\partial r\\) | Interest rate | Rate exposure |\n\n## 8. Assumptions behind Black-Scholes Greeks\n\nThe closed-form Greek formulas above assume the Black-Scholes setting:\n\n1. The option is European.\n2. The underlying asset follows geometric Brownian motion.\n3. Volatility is constant.\n4. The risk-free rate is constant.\n5. Trading is continuous.\n6. There are no transaction costs.\n7. The stock pays no dividends.\n\nIf these assumptions fail, the formulas may still be useful approximations, but they may not fully capture real market risk.\n\n## 9. Example: Delta approximation\n\nSuppose a call option has:\n\n- Current price \\(C = 10\\)"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_8",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "y capture real market risk.\n\n## 9. Example: Delta approximation\n\nSuppose a call option has:\n\n- Current price \\(C = 10\\)\n- Delta \\(\\Delta = 0.55\\)\n- Stock price change \\(\\Delta S = +2\\)\n\nThe approximate option price change is:\n\n\\[\n\\Delta C \\approx 0.55 \\times 2 = 1.10\n\\]\n\nSo the new option price is approximately:\n\n\\[\nC_{new} \\approx 10 + 1.10 = 11.10\n\\]\n\nThis is only a first-order approximation. If the stock movement is large, Gamma becomes important.\n\n## 10. Example: Delta-Gamma approximation\n\nA better approximation includes Gamma:\n\n\\[\n\\Delta V \\approx \\Delta \\Delta S + \\frac{1}{2}\\Gamma(\\Delta S)^2\n\\]\n\nSuppose:\n\n- \\(\\Delta = 0.55\\)\n- \\(\\Gamma = 0.04\\)\n- \\(\\Delta S = 2\\)\n\nThen:\n\n\\[\n\\Delta V"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_9",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "ac{1}{2}\\Gamma(\\Delta S)^2\n\\]\n\nSuppose:\n\n- \\(\\Delta = 0.55\\)\n- \\(\\Gamma = 0.04\\)\n- \\(\\Delta S = 2\\)\n\nThen:\n\n\\[\n\\Delta V \\approx 0.55(2) + \\frac{1}{2}(0.04)(2^2)\n\\]\n\n\\[\n\\Delta V \\approx 1.10 + 0.08 = 1.18\n\\]\n\nThe Gamma term adjusts for the curvature of the option price.\n\n## 11. Why Greeks matter for hedging\n\nDelta is the starting point for hedging because it measures directional exposure. If a trader is short one call option with Delta \\(0.60\\), they can hedge the position by buying approximately \\(0.60\\) shares of the underlying stock.\n\nHowever, Delta changes over time and with stock price movement. Gamma explains why the hedge must be updated. Vega explains why a portfolio can lose money ev"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_10",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "with stock price movement. Gamma explains why the hedge must be updated. Vega explains why a portfolio can lose money even if Delta is hedged, because implied volatility may change. Theta explains why time decay affects the value of the option position.\n\nA complete risk management system usually monitors multiple Greeks, not Delta alone.\n\n## 12. Retrieval questions for RAG testing\n\n1. What does Delta measure?\n2. What is the Black-Scholes Delta of a European call?\n3. What does Gamma measure?\n4. Why does high Gamma make hedging harder?\n5. What does Vega measure?\n6. Why can a delta-hedged portfolio still lose money?"
+  },
+  {
+    "chunk_id": "03_greeks_chunk_11",
+    "doc_id": "03_greeks",
+    "source": "03_greeks.md",
+    "text": "delta-hedged portfolio still lose money?"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_0",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "# 04 Delta Hedging\n\n## 1. What is delta hedging?\n\n**Delta hedging** is a strategy that tries to reduce or eliminate the directional risk of an option position by trading the underlying asset.\n\nDelta measures the sensitivity of the option value to the underlying price:\n\n\\[\n\\Delta = \\frac{\\partial V}{\\partial S}\n\\]\n\nIf an option position has Delta exposure, a trader can take an opposite position in the underlying asset to make the total portfolio approximately delta-neutral.\n\n## 2. Delta-neutral portfolio\n\nA portfolio is **delta-neutral** if its total Delta is zero:\n\n\\[\n\\Delta_{portfolio} = 0\n\\]\n\nSuppose a trader is short one call option. The call has Delta \\(\\Delta_C\\). The short call positio"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_1",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "a_{portfolio} = 0\n\\]\n\nSuppose a trader is short one call option. The call has Delta \\(\\Delta_C\\). The short call position has Delta:\n\n\\[\n-\\Delta_C\n\\]\n\nTo hedge this short call, the trader buys \\(\\Delta_C\\) shares of the underlying stock. The stock position has Delta:\n\n\\[\n+\\Delta_C\n\\]\n\nThe total Delta is:\n\n\\[\n-\\Delta_C + \\Delta_C = 0\n\\]\n\nIntuition:\n\nIf the stock price goes up slightly, the short call loses money, but the long stock position gains money. If the stock price goes down slightly, the short call gains money, but the long stock position loses money.\n\n## 3. Example: hedging a short call\n\nSuppose a trader sells one European call option with:\n\n- Option Delta \\(\\Delta_C = 0.60\\)\n- One o"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_2",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "hedging a short call\n\nSuppose a trader sells one European call option with:\n\n- Option Delta \\(\\Delta_C = 0.60\\)\n- One option represents one share for simplicity\n\nThe short call has Delta:\n\n\\[\n-0.60\n\\]\n\nTo delta hedge, the trader buys:\n\n\\[\n0.60 \\text{ shares}\n\\]\n\nThe total Delta becomes:\n\n\\[\n-0.60 + 0.60 = 0\n\\]\n\nIf the stock price increases by 1 dollar, then approximately:\n\n- short call loses \\(0.60\\),\n- stock hedge gains \\(0.60\\),\n- net first-order change is approximately 0.\n\n## 4. Rebalancing\n\nDelta is not constant. It changes when:\n\n1. the stock price changes,\n2. time passes,\n3. volatility changes,\n4. interest rates change.\n\nTherefore, a delta hedge must be updated repeatedly. This is cal"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_3",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "sses,\n3. volatility changes,\n4. interest rates change.\n\nTherefore, a delta hedge must be updated repeatedly. This is called **rebalancing**.\n\nIf the new option Delta becomes \\(0.70\\), the trader must increase the stock hedge from \\(0.60\\) shares to \\(0.70\\) shares.\n\nThe required trade is:\n\n\\[\n0.70 - 0.60 = 0.10 \\text{ shares}\n\\]\n\n## 5. Connection to Gamma\n\nGamma measures how fast Delta changes as the stock price changes:\n\n\\[\n\\Gamma = \\frac{\\partial \\Delta}{\\partial S}\n\\]\n\nIf Gamma is high, Delta changes quickly. This makes delta hedging more difficult because the hedge becomes outdated quickly.\n\nThe Delta-Gamma approximation is:\n\n\\[\n\\Delta V \\approx \\Delta \\Delta S + \\frac{1}{2}\\Gamma(\\Delta"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_4",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "mes outdated quickly.\n\nThe Delta-Gamma approximation is:\n\n\\[\n\\Delta V \\approx \\Delta \\Delta S + \\frac{1}{2}\\Gamma(\\Delta S)^2\n\\]\n\nA delta hedge removes the first-order term, but the second-order Gamma term remains.\n\nThis is why a delta-neutral portfolio can still gain or lose money when the underlying price moves significantly.\n\n## 6. Ideal continuous-time delta hedging\n\nIn the Black-Scholes model, if markets are frictionless and trading is continuous, a trader can theoretically replicate an option payoff by continuously rebalancing a portfolio of stock and cash.\n\nFor an option value \\(V(S,t)\\), the replicating portfolio holds:\n\n\\[\n\\Delta_t = \\frac{\\partial V}{\\partial S}\n\\]\n\nshares of the u"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_5",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "tion value \\(V(S,t)\\), the replicating portfolio holds:\n\n\\[\n\\Delta_t = \\frac{\\partial V}{\\partial S}\n\\]\n\nshares of the underlying asset.\n\nThe cash account is adjusted so that the portfolio value matches the option value.\n\nIntuition:\n\nThe option can be dynamically replicated because the random stock price risk is canceled by holding the correct number of shares. This is the foundation of the Black-Scholes PDE.\n\n## 7. Discrete-time hedging\n\nIn real markets, traders cannot rebalance continuously. Hedging is done at discrete times, such as every minute, hour, day, or week.\n\nDiscrete hedging creates **hedging error** because the stock price may move between rebalancing times.\n\nThe hedging error c"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_6",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "crete hedging creates **hedging error** because the stock price may move between rebalancing times.\n\nThe hedging error can be affected by:\n\n1. rebalancing frequency,\n2. volatility,\n3. Gamma,\n4. transaction costs,\n5. jumps in the underlying price,\n6. model error in estimating Delta.\n\n## 8. Transaction costs\n\nIn textbook delta hedging, transaction costs are usually ignored. In practice, every rebalancing trade may incur costs such as:\n\n- bid-ask spread,\n- brokerage fees,\n- market impact,\n- slippage.\n\nIf a trader rebalances too frequently, transaction costs can become large. If the trader rebalances too rarely, hedging error can become large.\n\nThis creates a trade-off:\n\n\\[\n\\text{Total cost} = \\"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_7",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "f the trader rebalances too rarely, hedging error can become large.\n\nThis creates a trade-off:\n\n\\[\n\\text{Total cost} = \\text{Hedging error} + \\text{Transaction cost}\n\\]\n\nA practical hedging strategy must balance both terms.\n\n## 9. Example: discrete rebalancing\n\nSuppose a trader is short one call option.\n\nAt time \\(t_0\\):\n\n- Call Delta = 0.50\n- Trader buys 0.50 shares\n\nAt time \\(t_1\\):\n\n- Stock price increases\n- Call Delta becomes 0.65\n- Trader buys additional 0.15 shares\n\nAt time \\(t_2\\):\n\n- Stock price decreases\n- Call Delta becomes 0.40\n- Trader sells 0.25 shares\n\nThis repeated buying and selling keeps the portfolio closer to delta-neutral, but it creates transaction costs.\n\n## 10. Assumpt"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_8",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "peated buying and selling keeps the portfolio closer to delta-neutral, but it creates transaction costs.\n\n## 10. Assumptions of classical delta hedging\n\nClassical delta hedging assumes:\n\n1. The option pricing model is correct.\n2. Delta can be computed accurately.\n3. The underlying asset can be traded freely.\n4. Trading can occur continuously or very frequently.\n5. There are no transaction costs.\n6. There are no liquidity constraints.\n7. The market has no jumps.\n8. The risk-free rate and volatility are known or estimated accurately.\n\nThese assumptions are strong. Real-world hedging often violates several of them.\n\n## 11. Why delta hedging is not perfect\n\nDelta hedging is not perfect because:"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_9",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "hedging often violates several of them.\n\n## 11. Why delta hedging is not perfect\n\nDelta hedging is not perfect because:\n\n1. Delta changes over time.\n2. Trading is discrete.\n3. Transaction costs exist.\n4. Volatility is uncertain.\n5. The pricing model may be wrong.\n6. Asset prices may jump.\n7. Liquidity may be limited.\n\nTherefore, delta hedging should be seen as risk reduction, not risk elimination.\n\n## 12. Link to reinforcement learning hedging\n\nClassical delta hedging gives a formula-based strategy:\n\n\\[\na_t = \\Delta_t\n\\]\n\nwhere \\(a_t\\) is the number of shares to hold at time \\(t\\).\n\nReinforcement learning hedging treats hedging as a sequential decision-making problem. Instead of following th"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_10",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "e \\(t\\).\n\nReinforcement learning hedging treats hedging as a sequential decision-making problem. Instead of following the Black-Scholes Delta exactly, an RL agent learns a trading policy that may account for:\n\n- transaction costs,\n- discrete rebalancing,\n- risk preferences,\n- market frictions,\n- model misspecification.\n\nThis is why delta hedging is a natural baseline for an RL hedging project.\n\n## 13. Retrieval questions for RAG testing\n\n1. What does it mean for a portfolio to be delta-neutral?\n2. How do you hedge a short call option using Delta?\n3. Why does delta hedging require rebalancing?\n4. Why does Gamma make delta hedging harder?\n5. What are the main sources of hedging error?\n6. Why i"
+  },
+  {
+    "chunk_id": "04_delta_hedging_chunk_11",
+    "doc_id": "04_delta_hedging",
+    "source": "04_delta_hedging.md",
+    "text": "equire rebalancing?\n4. Why does Gamma make delta hedging harder?\n5. What are the main sources of hedging error?\n6. Why is delta hedging an important baseline for reinforcement learning hedging?"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_0",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "# 05 Reinforcement Learning for Hedging\n\n## 1. Why use reinforcement learning for hedging?\n\nClassical delta hedging is based on mathematical formulas from models such as Black-Scholes. It works well under ideal assumptions, including continuous trading, no transaction costs, constant volatility, and correct model specification.\n\nReal markets are different. Trading is discrete, transaction costs exist, volatility changes, and model assumptions may fail.\n\n**Reinforcement learning (RL)** is useful because hedging is naturally a sequential decision-making problem. At each time step, the hedger observes the market and portfolio state, chooses a trading action, receives a cost or reward, and then"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_1",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "step, the hedger observes the market and portfolio state, chooses a trading action, receives a cost or reward, and then moves to the next time step.\n\n## 2. Hedging as a Markov decision process\n\nA reinforcement learning problem is often modeled as a **Markov decision process (MDP)**:\n\n\\[\n(\\mathcal{S}, \\mathcal{A}, P, R, \\gamma)\n\\]\n\nwhere:\n\n| Component | Meaning in hedging |\n|---|---|\n| \\(\\mathcal{S}\\) | State space: market and portfolio information |\n| \\(\\mathcal{A}\\) | Action space: trading decisions |\n| \\(P\\) | Transition dynamics of market states |\n| \\(R\\) | Reward or negative cost function |\n| \\(\\gamma\\) | Discount factor |\n\nThe goal is to learn a policy:\n\n\\[\n\\pi(a_t \\mid s_t)\n\\]\n\nthat ch"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_2",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "ative cost function |\n| \\(\\gamma\\) | Discount factor |\n\nThe goal is to learn a policy:\n\n\\[\n\\pi(a_t \\mid s_t)\n\\]\n\nthat chooses an action \\(a_t\\) given the current state \\(s_t\\).\n\n## 3. State design for RL hedging\n\nA state should include information that helps the agent decide how to hedge.\n\nPossible state variables include:\n\n1. Current underlying price \\(S_t\\)\n2. Strike price \\(K\\)\n3. Time to maturity \\(\\tau = T-t\\)\n4. Current option value \\(V_t\\)\n5. Current Delta \\(\\Delta_t\\)\n6. Current hedge position \\(h_t\\)\n7. Previous action \\(a_{t-1}\\)\n8. Cash account or portfolio value\n9. Realized volatility estimate\n10. Implied volatility estimate, if available\n\nA compact example state is:\n\n\\[\ns_t = \\l"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_3",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "9. Realized volatility estimate\n10. Implied volatility estimate, if available\n\nA compact example state is:\n\n\\[\ns_t = \\left(\\frac{S_t}{K}, \\tau, \\Delta_t, h_t\\right)\n\\]\n\nIntuition:\n\n- \\(S_t/K\\) describes moneyness.\n- \\(\\tau\\) describes how much time remains.\n- \\(\\Delta_t\\) gives the classical hedge target.\n- \\(h_t\\) tells the agent its current hedge position.\n\n## 4. Action design\n\nThe action can represent either the target hedge position or the trade size.\n\n### Target-position action\n\nThe agent chooses the number of shares to hold:\n\n\\[\na_t = h_t\n\\]\n\nFor example, \\(a_t = 0.60\\) means the agent wants to hold 0.60 shares.\n\n### Trade-size action\n\nThe agent chooses how much to buy or sell:\n\n\\[\na_"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_4",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "0\\) means the agent wants to hold 0.60 shares.\n\n### Trade-size action\n\nThe agent chooses how much to buy or sell:\n\n\\[\na_t = h_t - h_{t-1}\n\\]\n\nFor example, \\(a_t = 0.10\\) means the agent buys 0.10 additional shares.\n\nIn practice, the action space can be continuous or discrete.\n\n## 5. Portfolio dynamics\n\nSuppose the hedger holds \\(h_t\\) shares of the underlying asset at time \\(t\\). The portfolio value can be written as:\n\n\\[\n\\Pi_t = h_t S_t + B_t - V_t\n\\]\n\nwhere:\n\n- \\(h_tS_t\\) is the value of the stock hedge,\n- \\(B_t\\) is the cash account,\n- \\(V_t\\) is the option liability value if the hedger is short the option.\n\nA self-financing update without transaction costs is approximately:\n\n\\[\nB_{t+1} ="
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_5",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "ue if the hedger is short the option.\n\nA self-financing update without transaction costs is approximately:\n\n\\[\nB_{t+1} = B_t e^{r\\Delta t} - (h_{t+1}-h_t)S_t\n\\]\n\nWith proportional transaction cost \\(\\lambda\\), the update becomes:\n\n\\[\nB_{t+1} = B_t e^{r\\Delta t} - (h_{t+1}-h_t)S_t - \\lambda S_t |h_{t+1}-h_t|\n\\]\n\nIntuition:\n\nChanging the hedge position costs money. The term \\(\\lambda S_t |h_{t+1}-h_t|\\) penalizes frequent or large trades.\n\n## 6. Reward design\n\nThe reward should encourage good hedging and discourage unnecessary trading.\n\nA simple reward can be the negative squared hedging error:\n\n\\[\nr_t = -\\left(\\Pi_{t+1} - \\Pi_t\\right)^2\n\\]\n\nA terminal reward can penalize final replication err"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_6",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "ared hedging error:\n\n\\[\nr_t = -\\left(\\Pi_{t+1} - \\Pi_t\\right)^2\n\\]\n\nA terminal reward can penalize final replication error:\n\n\\[\nr_T = -\\left(\\Pi_T\\right)^2\n\\]\n\nIf transaction costs are included:\n\n\\[\nr_t = -\\left(\\text{hedging error}_t^2 + \\lambda S_t |h_t-h_{t-1}|\\right)\n\\]\n\nAlternative risk-sensitive objectives include:\n\n\\[\n\\mathbb{E}[\\text{PnL}] - \\eta \\text{Var}(\\text{PnL})\n\\]\n\nor minimizing conditional value at risk:\n\n\\[\n\\text{CVaR}_{\\alpha}(\\text{loss})\n\\]\n\nIntuition:\n\nThe reward function determines what the agent learns. If we only penalize hedging error, the agent may trade too much. If we include transaction costs, the agent learns to balance risk reduction and trading cost.\n\n## 7. P"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_7",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "y trade too much. If we include transaction costs, the agent learns to balance risk reduction and trading cost.\n\n## 7. Policy objective\n\nThe RL agent tries to maximize expected cumulative reward:\n\n\\[\nJ(\\pi) = \\mathbb{E}_{\\pi}\\left[\\sum_{t=0}^{T} \\gamma^t r_t\\right]\n\\]\n\nIn episodic hedging, one episode can represent one simulated option life from initial time to maturity.\n\nThe learned policy is:\n\n\\[\n\\pi^* = \\arg\\max_{\\pi} J(\\pi)\n\\]\n\n## 8. Baseline: Black-Scholes delta hedging\n\nA natural baseline policy is the Black-Scholes delta hedge:\n\n\\[\nh_t = \\Delta_t^{BS}\n\\]\n\nFor a short European call, this means holding:\n\n\\[\nh_t = N(d_1)\n\\]\n\nshares of the underlying asset.\n\nThe RL policy can be compared"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_8",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "European call, this means holding:\n\n\\[\nh_t = N(d_1)\n\\]\n\nshares of the underlying asset.\n\nThe RL policy can be compared against this baseline using metrics such as:\n\n1. mean hedging error,\n2. standard deviation of PnL,\n3. mean transaction cost,\n4. tail loss,\n5. CVaR,\n6. final replication error.\n\n## 9. Example: simple RL hedging environment\n\nConsider a simplified environment:\n\n- One European call option\n- \\(S_0 = 100\\)\n- \\(K = 100\\)\n- \\(T = 30\\) days\n- Daily rebalancing\n- Proportional transaction cost \\(\\lambda = 0.001\\)\n\nAt each day \\(t\\):\n\n1. The agent observes \\(s_t = (S_t/K, \\tau, \\Delta_t, h_t)\\).\n2. The agent chooses a new hedge position \\(h_{t+1}\\).\n3. The environment updates the stock"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_9",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "t/K, \\tau, \\Delta_t, h_t)\\).\n2. The agent chooses a new hedge position \\(h_{t+1}\\).\n3. The environment updates the stock price.\n4. The portfolio value and transaction cost are computed.\n5. The agent receives a reward based on hedging error and trading cost.\n\nA good RL agent should learn not only to follow Delta, but also to avoid excessive rebalancing when the benefit is small relative to transaction cost.\n\n## 10. Assumptions in RL hedging experiments\n\nAn RL hedging project usually makes assumptions such as:\n\n1. Market data can be simulated or sampled from historical data.\n2. The training environment is representative of the test environment.\n3. The state contains enough information for good"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_10",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "2. The training environment is representative of the test environment.\n3. The state contains enough information for good decisions.\n4. The reward function correctly reflects the hedging objective.\n5. Transaction costs can be modeled explicitly.\n6. The action constraints are realistic.\n7. The evaluation metrics reflect practical hedging performance.\n\nThese assumptions should be stated clearly because RL models can overfit to the simulated environment.\n\n## 11. Advantages of RL hedging\n\nRL hedging can be useful because it can:\n\n1. handle transaction costs directly,\n2. learn under discrete rebalancing,\n3. optimize non-standard objectives,\n4. adapt to simulated market frictions,\n5. learn policies"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_11",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "der discrete rebalancing,\n3. optimize non-standard objectives,\n4. adapt to simulated market frictions,\n5. learn policies without requiring a closed-form solution.\n\n## 12. Limitations of RL hedging\n\nRL hedging also has important limitations:\n\n1. It requires many training episodes.\n2. It may overfit to the simulator.\n3. It can be unstable to train.\n4. The learned policy may be hard to interpret.\n5. Poor reward design can produce undesirable behavior.\n6. Real market regime changes can reduce performance.\n\nTherefore, RL hedging should be compared carefully against strong baselines such as Black-Scholes delta hedging and no-transaction bands.\n\n## 13. Evaluation metrics\n\nUseful evaluation metrics"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_12",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "nes such as Black-Scholes delta hedging and no-transaction bands.\n\n## 13. Evaluation metrics\n\nUseful evaluation metrics include:\n\n### Mean final hedging error\n\n\\[\n\\frac{1}{N}\\sum_{i=1}^{N} \\Pi_T^{(i)}\n\\]\n\n### Mean squared final hedging error\n\n\\[\n\\frac{1}{N}\\sum_{i=1}^{N} \\left(\\Pi_T^{(i)}\\right)^2\n\\]\n\n### PnL volatility\n\n\\[\n\\sqrt{\\text{Var}(\\text{PnL})}\n\\]\n\n### Average transaction cost\n\n\\[\n\\frac{1}{N}\\sum_{i=1}^{N}\\sum_{t=0}^{T-1}\\lambda S_t^{(i)}|h_{t+1}^{(i)}-h_t^{(i)}|\n\\]\n\n### CVaR of loss\n\n\\[\n\\text{CVaR}_{\\alpha}(L) = \\mathbb{E}[L \\mid L \\ge \\text{VaR}_{\\alpha}(L)]\n\\]\n\nwhere \\(L\\) is the loss variable.\n\n## 14. Link to the QuantRAG Hedge project\n\nIn a QuantRAG Hedge project, the knowledge"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_13",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "where \\(L\\) is the loss variable.\n\n## 14. Link to the QuantRAG Hedge project\n\nIn a QuantRAG Hedge project, the knowledge base can help answer conceptual and mathematical questions such as:\n\n- What is Delta?\n- Why does Gamma matter for hedging?\n- What is the Black-Scholes hedge ratio?\n- Why does transaction cost affect rebalancing frequency?\n- How can RL formulate hedging as an MDP?\n\nThe RAG system should retrieve relevant chunks from options theory, Greeks, delta hedging, and RL hedging documents before generating answers.\n\n## 15. Retrieval questions for RAG testing\n\n1. How can hedging be formulated as a Markov decision process?\n2. What can be included in the RL hedging state?\n3. What is a t"
+  },
+  {
+    "chunk_id": "05_rl_hedging_chunk_14",
+    "doc_id": "05_rl_hedging",
+    "source": "05_rl_hedging.md",
+    "text": "can hedging be formulated as a Markov decision process?\n2. What can be included in the RL hedging state?\n3. What is a transaction-cost-aware reward function?\n4. Why is Black-Scholes delta hedging a baseline for RL hedging?\n5. What metrics can evaluate an RL hedging strategy?\n6. What are the limitations of reinforcement learning for hedging?"
+  }
+]
