@@ -30,9 +30,8 @@ This project compares classical and learning-based hedging strategies:
 
 The final evaluation uses five random seeds:
 
-```python
 [42, 123, 2026, 777, 999]
-````
+
 
 and reports multiple metrics, including mean absolute hedging error, standard deviation of hedging error, 95% CVaR, transaction cost, number of trades, and final reward.
 
