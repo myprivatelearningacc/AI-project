@@ -1,4 +1,4 @@
-````markdown
+
 # QuantRAG-Hedge: Tool-Augmented AI Assistant and Reinforcement Learning for Option Hedging
 
 QuantRAG-Hedge is an Artificial Intelligence course project that combines classical quantitative finance, reinforcement learning, and a tool-augmented RAG assistant. The main evaluated AI algorithm is **tabular Q-learning**, applied to the problem of dynamic option hedging under transaction costs and discrete rebalancing.
